@@ -20,6 +20,7 @@ Limitation: resolutions needs to divide shape
 
 ## Benchmarks
 CPU: Intel(R) Core(TM) i7-6850K CPU @ 3.60GHz
+
 GPU: Nvidia Titan XP
 | Algorithms | (1,256,256);1octaves | (1,256,256);6octaves | (32,256,256);6octaves | (32,1024,1024);8octaves |
 | --- | --- | --- | --- | --- |
