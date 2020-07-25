@@ -1,19 +1,19 @@
 language: python
 python:
-  - '3.6'
-  - '3.7'
-  - '3.8'
+- '3.6'
+- '3.7'
+- '3.8'
 install:
-  - pip install -r requirements.txt
-  - pip install coveralls
+- pip install -r requirements.txt
+- pip install coveralls
 script:
-  - coverage run --source=pyperlin -m unittest -v pyperlin.tests
-  - coverage report -m --skip-covered --skip-empty
+- coverage run --source=pyperlin -m unittest -v pyperlin.tests
+- coverage report -m --skip-covered --skip-empty
 after_success:
-  - coveralls
+- coveralls
 deploy:
   provider: pypi
   username: __token__
   password:
-    secure: LjY2ynp5whBS4inxQZfad3Wrw0ogHus++HnFmEkqvzjgKv7rJqqwnlJ44V4PSU5eRXbCMVhPbdi/0f1p0O8i5MrooNMps/cRbHgbYI7MNxpgKAl7hNocJVFfBWmecPx6JNEfTet/QN9PndJSBrxqOUgIRnTgHPpKwOV75Ags+22mRbOdfvaz/QM9ZzLMnyzv6jNgaY5m46wYZ+S9nmzmSyL24eyR12o0fEh2DhUITOsvKEKGokM9sHndKE4wdT9lLOLqMGjcURaVUI+zUKMhHAS2+kiZx06emVxc5GgKB8+YMZ8i8W2YJb2WKoDPn8kcA46AH29XxIAyCC2skHsQi7DeesZixp1fIqBcYsd2xn93py4kjHk/a378Z8AJ2r/3YDcByvsCRj/dMyJG5z3iC46K/XUg7uJpmRlTe96KLhr/AKEofemsnSrwPS9AqENThIP+jv+UPGrqHqo0RvKQs6m3hpFeJvsfcuTQAovO8IAPUZnv4hkUbTe3rlTvW9T0TF0drTOhb/yL+jdzTID7kSBR6dDLRwg5AhWrFe6jZ3XZI4Oc+4xaiS/MJUfNsyBXYkpLW/Rxa5zHO6fjZOhpbDBZnyBVgx5dvrmp5+RE/d1gLqZi+skZFuKMjqLbWfz0EUBfAgz78Oj2ll+1IFvlAwxxljkqQ/hIoO00lQHpS94=
-  skip_existing: True
+    secure: PVIYKWAgayhjwNVD5QHv6c6uYS1LMGpQJdI5QKc2bXEh3CHrnmKnyt5LFkdjzfDubAGMH7LxiGmdzw5fytM9MF1iVQUA6tAn757fZp6943CyzsSsSckeTdvTQmU3nBaxvXiNbbjDMOqcXAdu2aLFn7v8Eyxk2aTNMf+1lg5yjSrdBp4FWq/UgTW78IF+2/Iz4ZcjIp+yaXM5WGGrPIxxRF1Sx8EteSqUPijBIrG2GfcB6AKkqsgVD3FFOAdktbdtop8CP52W2ftWjbU3eXqExGU8YR59eNZZIuQ9/+V948MPp9YX8B19Cjn8OfNP1QvqCcj40zx+/bhRttHFnh7ILtJPvna6wT5j5mf1sRQk0pr2f3m580lKSBPr/Uyeb6CuiNAVNoxGK7QprFomn+hB+ztXUsw8YI4yS52D0JYFUrUhJ+gCddJDJfRgVJBJK6pACdN3NNSkYc9GXK/6CkZKzQfmzY0YNT46vC7hE9T0Q6pYcSyrxkcXm4gXmfmigBsWYAuj5ihWBcfzW2V7lzvsmY8PapoFCQbTgBOXnOb76cLCcvYUtrLzuMRdugkU8gzsp3SuU+8Hllld+sGpanUN3HhBlrL53wWsbrk3EWFwF0TQK0WtIJfnN/ZzEgvB27Y+3t663RlUTreyjqS8VVRtSVJ+kSDcheH+jucdMqFOZAU=
+  skip_existing: true
