@@ -5,10 +5,10 @@ Limitation: resolutions needs to divide shape
 
 Using pytoch as the array backend makes the GPU acceleration trivial. Also it uses batch sampling to better use parallelization.
 
-By playing with the parameters of Perlin noise, it is possible to create different texture. (code at the bottom)
+By playing with the parameters of Perlin noise, it is possible to create different textures. (code at the bottom)
 ![alt text](pyperlin/examples/clouds_and_fire.png?raw=true)
 
-E.g.
+## Usage
 ```python
 import torch
 from pyperlin import FractalPerlin2D
