@@ -3,6 +3,10 @@ GPU accelerated Perlin Noise in python
 
 Using pytoch as the array backend makes the GPU acceleration trivial. Also it uses batch sampling to better use parallelization.
 
+By playing with the parameters of Perlin noise, it is possible to create different texture.
+![alt text](pyperlin/examples/cloud.png?raw=true)
+![alt text](pyperlin/examples/fire.png?raw=true)
+
 E.g.
 ```python
 import torch
