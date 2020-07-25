@@ -1,4 +1,7 @@
 # pyperlin
+[![Build Status](https://travis-ci.com/duchesneaumathieu/pyperlin.svg?branch=master)](https://travis-ci.com/duchesneaumathieu/pyperlin)
+[![Coveralls github](https://img.shields.io/coveralls/github/duchesneaumathieu/pyperlin)](https://coveralls.io/github/duchesneaumathieu/pyperlin?branch=master) 
+
 GPU accelerated Perlin Noise in python
 
 Limitation: resolutions needs to divide shape
@@ -7,6 +10,11 @@ Using pytoch as the array backend makes the GPU acceleration trivial. Also it us
 
 By playing with the parameters of Perlin noise, it is possible to create different textures. (code at the bottom)
 ![alt text](pyperlin/examples/clouds_and_fire.png?raw=true)
+
+## Installation
+```bash
+pip install pyperlin
+```
 
 ## Usage
 ```python
