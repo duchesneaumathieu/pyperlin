@@ -1,0 +1,19 @@
+language: python
+python:
+  - '3.6'
+  - '3.7'
+  - '3.8'
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+script:
+  - coverage run --source=pyperlin -m unittest -v pyperlin.tests
+  - coverage report -m --skip-covered --skip-empty
+after_success:
+  - coveralls
+deploy:
+  provider: pypi
+  username: __token__
+  password:
+    secure: LjY2ynp5whBS4inxQZfad3Wrw0ogHus++HnFmEkqvzjgKv7rJqqwnlJ44V4PSU5eRXbCMVhPbdi/0f1p0O8i5MrooNMps/cRbHgbYI7MNxpgKAl7hNocJVFfBWmecPx6JNEfTet/QN9PndJSBrxqOUgIRnTgHPpKwOV75Ags+22mRbOdfvaz/QM9ZzLMnyzv6jNgaY5m46wYZ+S9nmzmSyL24eyR12o0fEh2DhUITOsvKEKGokM9sHndKE4wdT9lLOLqMGjcURaVUI+zUKMhHAS2+kiZx06emVxc5GgKB8+YMZ8i8W2YJb2WKoDPn8kcA46AH29XxIAyCC2skHsQi7DeesZixp1fIqBcYsd2xn93py4kjHk/a378Z8AJ2r/3YDcByvsCRj/dMyJG5z3iC46K/XUg7uJpmRlTe96KLhr/AKEofemsnSrwPS9AqENThIP+jv+UPGrqHqo0RvKQs6m3hpFeJvsfcuTQAovO8IAPUZnv4hkUbTe3rlTvW9T0TF0drTOhb/yL+jdzTID7kSBR6dDLRwg5AhWrFe6jZ3XZI4Oc+4xaiS/MJUfNsyBXYkpLW/Rxa5zHO6fjZOhpbDBZnyBVgx5dvrmp5+RE/d1gLqZi+skZFuKMjqLbWfz0EUBfAgz78Oj2ll+1IFvlAwxxljkqQ/hIoO00lQHpS94=
+  skip_existing: True
