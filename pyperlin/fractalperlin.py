@@ -17,11 +17,7 @@ class FractalPerlin2D(object):
         self.tr_masks = [torch.flip(tl_mask,dims=[1]) for tl_mask in self.tl_masks]
         self.bl_masks = [torch.flip(tl_mask,dims=[0]) for tl_mask in self.tl_masks]
         self.br_masks = [torch.flip(tl_mask,dims=[0,1]) for tl_mask in self.tl_masks]
-        
-        #memory allocation
-        self._noise = torch.zeros(shape, device=self.device)
         self._angles = [torch.zeros((shape[0],res[0]+2,res[1]+2), device=self.device) for res in resolutions]
-        #could do more allocations ...
         
     def fade(self, t):
         return 6 * t**5 - 15 * t**4 + 10 * t**3
@@ -42,15 +38,12 @@ class FractalPerlin2D(object):
         grids = self.br_masks[octave]*br + self.bl_masks[octave]*bl + self.tr_masks[octave]*tr + self.tl_masks[octave]*tl
         noise = grids.permute(0,1,3,2,4).reshape((self.shape[0], self.shape[1]+grid_shape[0], self.shape[2]+grid_shape[1]))
 
-        A = torch.randint(0,grid_shape[0],(self.shape[0],)) #use default torch rng
-        B = torch.randint(0,grid_shape[1],(self.shape[0],))
-        factor = self.factors[octave]
-        for n,(a,b) in enumerate(zip(A,B)): 
-            self._noise[n] += factor*noise[n,a:a-grid_shape[0], b:b-grid_shape[1]]
-        return noise
+        A = torch.randint(0,grid_shape[0],(self.shape[0],), device=self.device, generator=self.generator)
+        B = torch.randint(0,grid_shape[1],(self.shape[0],), device=self.device, generator=self.generator)
+        return sum(noise[n,a:a-grid_shape[0], b:b-grid_shape[1]] for n,(a,b) in enumerate(zip(A,B)))
     
     def __call__(self):
-        self._noise.zero_()
-        for i in range(len(self.resolutions)):
-            self.perlin_noise(i)
-        return self._noise
+        noise = torch.zeros(self.shape, device=self.device)
+        for octave, factor in enumerate(self.factors):
+            noise += factor*self.perlin_noise(octave)
+        return noise
