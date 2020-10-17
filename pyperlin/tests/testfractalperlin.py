@@ -12,6 +12,13 @@ class TestFractalPerlin2D(unittest.TestCase):
         factors = [.5**i for i in range(6)]
         noise = FractalPerlin2D(shape, resolutions, factors)().numpy()
         self.assertEqual(noise.shape, shape)
+        
+    def test_different_batch_elements(self):
+        shape = (32,256,256)
+        resolutions = [(2**i,2**i) for i in range(1,7)] #for lacunarity = 2.0
+        factors = [.5**i for i in range(6)]
+        noise = FractalPerlin2D(shape, resolutions, factors)()
+        self.assertFalse(torch.allclose(noise[0], noise[1]))
     
     def test_replicability(self):
         shape = (32,256,256)

@@ -40,7 +40,8 @@ class FractalPerlin2D(object):
 
         A = torch.randint(0,grid_shape[0],(self.shape[0],), device=self.device, generator=self.generator)
         B = torch.randint(0,grid_shape[1],(self.shape[0],), device=self.device, generator=self.generator)
-        return sum(noise[n,a:a-grid_shape[0], b:b-grid_shape[1]] for n,(a,b) in enumerate(zip(A,B)))
+        noise = torch.stack([noise[n,a:a-grid_shape[0], b:b-grid_shape[1]] for n,(a,b) in enumerate(zip(A,B))])
+        return noise
     
     def __call__(self):
         noise = torch.zeros(self.shape, device=self.device)
