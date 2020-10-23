@@ -23,7 +23,7 @@ from pyperlin import FractalPerlin2D
 
 shape = (32,256,256) #for batch size = 32 and noises' shape = (256,256)
 resolutions = [(2**i,2**i) for i in range(1,7)] #for lacunarity = 2.0
-factors = [.5**i for i in range(8)] #for persistence = 0.5
+factors = [.5**i for i in range(6)] #for persistence = 0.5
 g_cuda = torch.Generator(device='cuda') #for GPU acceleration
 fp = FractalPerlin2D(shape, resolutions, factors, generator=g_cuda)
 noise = fp() #sampling
@@ -51,10 +51,12 @@ factors = [.5**i for i in range(8)] #for persistence = 0.5
 g_cuda = torch.Generator(device='cuda') #for GPU acceleration
 
 clouds_resolutions = [(2**i,2**i) for i in range(1,7)] #for lacunarity = 2.0
-clouds = FractalPerlin2D(shape, clouds_resolutions, factors, generator=g_cuda)().cpu().numpy()[0]
+clouds_factors = [.5**i for i in range(6)] #for persistence = 0.5
+clouds = FractalPerlin2D(shape, clouds_resolutions, clouds_factors, generator=g_cuda)().cpu().numpy()[0]
 
 fire_resolutions = [(2**i,4**i) for i in range(1,4)] #for lacunarity = 2.0 and 4.0
-fire = FractalPerlin2D(shape, fire_resolutions, factors, generator=g_cuda)().cpu().numpy()[0]
+fire_factors = [.5**i for i in range(3)] #for persistence = 0.5
+fire = FractalPerlin2D(shape, fire_resolutions, fire_factors, generator=g_cuda)().cpu().numpy()[0]
 
 fig = plt.figure(figsize=(10,5))
 
